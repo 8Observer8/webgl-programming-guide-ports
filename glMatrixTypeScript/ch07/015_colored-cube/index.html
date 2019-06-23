@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chapter 2. Colored cube</title>
+
+    <!-- Debug Version -->
+    <script data-main="dist/RequireConfig"
+        src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    <!-- Release Version -->
+    <!-- <script src="dist/bundle.min.js"></script> -->
+</head>
+
+<body>
+    <canvas id="renderCanvas" width="300" height="300">
+        Your browser does not support the HTML canvas element.
+    </canvas>
+
+    <script id="VertexShaderElement" type="x-shader/x-vertex">
+        attribute vec3 aPosition;
+
+        void main()
+        {
+            gl_Position = vec4(aPosition, 1.0);
+        }
+    </script>
+
+    <script id="FragmentShaderElement" type="x-shader/x-fragment">
+        void main()
+        {
+            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+    </script>
+</body>
+
+</html>
