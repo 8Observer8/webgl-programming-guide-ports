@@ -1,7 +1,7 @@
-import { mat4 } from "gl-matrix";
+
 import { Scene } from "./Scene";
 
-// Playground: 
+// Playground: https://next.plnkr.co/edit/88OzrQSw4z64CF0C?preview
 
 class Program
 {
