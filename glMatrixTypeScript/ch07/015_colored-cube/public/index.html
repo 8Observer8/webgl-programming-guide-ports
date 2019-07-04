@@ -8,11 +8,11 @@
     <title>Chapter 2. Colored cube</title>
 
     <!-- Debug Version -->
-    <script data-main="dist/RequireConfig"
+    <script data-main="js/RequireConfig"
         src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 
     <!-- Release Version -->
-    <!-- <script src="dist/bundle.min.js"></script> -->
+    <!-- <script src="js/bundle.min.js"></script> -->
 </head>
 
 <body>
@@ -22,17 +22,26 @@
 
     <script id="VertexShaderElement" type="x-shader/x-vertex">
         attribute vec3 aPosition;
+        attribute vec4 aColor;
+        uniform mat4 uProjMatrix;
+        uniform mat4 uViewMatrix;
+        varying vec4 vColor;
 
         void main()
         {
-            gl_Position = vec4(aPosition, 1.0);
+            gl_Position = uProjMatrix * uViewMatrix * vec4(aPosition, 1.0);
+            vColor = aColor;
         }
     </script>
 
     <script id="FragmentShaderElement" type="x-shader/x-fragment">
+        precision mediump float;
+
+        varying vec4 vColor;
+
         void main()
         {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+            gl_FragColor = vColor;
         }
     </script>
 </body>

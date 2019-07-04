@@ -1,4 +1,4 @@
-define(["require", "exports", "./ShaderProgram"], function (require, exports, ShaderProgram_1) {
+define(["require", "exports", "./ShaderProgram", "./VertexBuffers", "gl-matrix", "./Camera"], function (require, exports, ShaderProgram_1, VertexBuffers_1, gl_matrix_1, Camera_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Scene = /** @class */ (function () {
@@ -13,10 +13,19 @@ define(["require", "exports", "./ShaderProgram"], function (require, exports, Sh
             }
             this._gl = gl;
             var program = ShaderProgram_1.ShaderProgram.InitializeAndGetID(gl, "VertexShaderElement", "FragmentShaderElement");
-            // Set clear color
+            var eyePos = gl_matrix_1.vec3.fromValues(3, 3, 7);
+            var targetPos = gl_matrix_1.vec3.fromValues(0, 0, 0);
+            var camera = new Camera_1.Camera(gl, program, eyePos, targetPos);
+            camera.SetViewProjection();
+            // Set the vertex information
+            var amountOfVertices = VertexBuffers_1.VertexBuffers.InitVBOsAndGetAmountOfVertices(gl, program);
+            // Set the clear color and enable the depth test
             gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            gl.enable(gl.DEPTH_TEST);
             // Clear <canvas>
-            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            // Draw the cube
+            gl.drawElements(gl.TRIANGLES, amountOfVertices, gl.UNSIGNED_BYTE, 0);
         }
         return Scene;
     }());

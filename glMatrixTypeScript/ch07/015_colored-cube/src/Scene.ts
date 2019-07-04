@@ -1,4 +1,7 @@
 import { ShaderProgram } from "./ShaderProgram";
+import { VertexBuffers } from "./VertexBuffers";
+import { vec3 } from "gl-matrix";
+import { Camera } from "./Camera";
 
 export class Scene
 {
@@ -21,10 +24,22 @@ export class Scene
         let program = ShaderProgram.InitializeAndGetID(
             gl, "VertexShaderElement", "FragmentShaderElement");
 
-        // Set clear color
+        let eyePos = vec3.fromValues(3, 3, 7);
+        let targetPos = vec3.fromValues(0, 0, 0);
+        let camera = new Camera(gl, program, eyePos, targetPos);
+        camera.SetViewProjection();
+
+        // Set the vertex information
+        let amountOfVertices = VertexBuffers.InitVBOsAndGetAmountOfVertices(gl, program);
+
+        // Set the clear color and enable the depth test
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.enable(gl.DEPTH_TEST);
 
         // Clear <canvas>
-        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        // Draw the cube
+        gl.drawElements(gl.TRIANGLES, amountOfVertices, gl.UNSIGNED_BYTE, 0);
     }
 }

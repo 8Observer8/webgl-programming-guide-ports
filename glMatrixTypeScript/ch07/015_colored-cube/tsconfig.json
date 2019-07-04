@@ -1,9 +1,12 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "outDir": "dist",
+        "outDir": "public/js",
         "module": "amd",
-        "sourceMap": true
+        "sourceMap": true,
+        "types": [
+            "requirejs", "gl-matrix"
+        ]
     },
     "include": [
         "src"
