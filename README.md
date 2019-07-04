@@ -1,7 +1,12 @@
-These examples I rewrite to C# OpenGL 3.1 and TypeScript from the book: https://sites.google.com/site/webglbook/
+These examples I rewrite to C# OpenGL 3.1 and TypeScript WebGL from the book: https://sites.google.com/site/webglbook/
 
 # TypeScript Playground:
+
+## Chapter 02. Your First Step with WebGL
 ch02/HelloCanvas: https://next.plnkr.co/edit/SPaDtGlLZ1ZlgRhd?preview
+
+## Chapter 07. Toward the 3D World
+ch07/ColoredCube: https://next.plnkr.co/edit/88OzrQSw4z64CF0C?preview
 
 # How to compile TypeScript examples locally
 
